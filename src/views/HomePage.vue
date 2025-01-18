@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <header class="header">
-            <h1 class="title">pagina de tradeo</h1>
+            <h1 class="title">Vox Trading</h1>
             <p class="subtitle">Descubre el poder de las criptos y lleva tus inversiones al siguiente nivel</p>
         </header>
 
@@ -52,7 +52,7 @@
 
         <footer class="footer">
             <div class="footer-content">
-                <p class="copyright">&copy; 2024 Future Vox Trading. Todos los derechos reservados.</p>
+                <p class="copyright">&copy; 2024 Vox Trading. Todos los derechos reservados.</p>
                 <small class="price-info-footer">Los precios mostrados son obtenidos de la API de satoshitango.</small>
             </div>
         </footer>

@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production' ? '/FinalLabo3/' : '/',
   devServer: {
     host: '0.0.0.0', // Escuchar en todas las interfaces de red
     port: 8080, // Puerto en el que se ejecutará tu aplicación (puedes cambiarlo si es necesario)

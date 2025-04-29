@@ -5,7 +5,6 @@
             <p class="subtitle">Descubre el poder de las criptos y lleva tus inversiones al siguiente nivel</p>
         </header>
 
-        <!-- Saludo y Botón de Inicio de sesión -->
         <div class="user-info">
             <p v-if="isLoggedIn" class="welcome-message">¡Hola, {{ userName }}!</p>
             <div>
@@ -108,7 +107,6 @@ export default {
 </script>
 
 <style scoped>
-    /* General Styles */
     * {
         margin: 0;
         padding: 0;

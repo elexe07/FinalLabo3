@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view /> <!-- Aquí se cargarán los componentes según la ruta -->
+    <router-view /> 
   </div>
 </template>
 
@@ -11,5 +11,4 @@ export default {
 </script>
 
 <style>
-/* Estilos globales */
 </style>

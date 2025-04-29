@@ -99,7 +99,7 @@ export const getCryptoPrice = async (coin, fiat, volumen) => {
     // Realizar la solicitud GET a la API
     const response = await axios.get(url, {
       headers: {
-        'Content-Type': 'application/json', // No es necesario el API key para esta consulta
+        'Content-Type': 'application/json',
       }
     });
 

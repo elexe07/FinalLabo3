@@ -5,17 +5,14 @@
 
     <h1>Historial de Transacciones</h1>
 
-    <!-- Mostrar errores si existen -->
     <div v-if="error" class="error">
       <p>{{ error }}</p>
     </div>
 
-    <!-- Si no hay transacciones disponibles -->
     <div v-if="transactions.length === 0">
       <p>No hay transacciones disponibles.</p>
     </div>
 
-    <!-- Si hay transacciones disponibles -->
     <div v-if="transactions.length > 0">
       <table>
         <thead>
@@ -44,7 +41,6 @@
       </table>
     </div>
 
-    <!-- Modal de edición de transacción -->
     <div v-if="editMode" class="modal" @click="cancelEdit">
       <div class="modal-content" @click.stop>
         <h2>Editar Transacción</h2>
@@ -65,8 +61,8 @@
 
 
   <script>
-  import { apiClient } from '../services/api.js'; // Verifica que la ruta sea correcta
-  import { updateTransaction, deleteTransaction } from '../services/api.js'; // Asegúrate de que la ruta sea correcta
+  import { apiClient } from '../services/api.js'; 
+  import { updateTransaction, deleteTransaction } from '../services/api.js'; 
 
   export default {
   data() {
@@ -81,14 +77,14 @@
   methods: {
     editTransaction(transaction) {
       this.editTransactionData = { ...transaction };
-      this.editMode = true; // Activar el modal de edición
+      this.editMode = true; 
     },
     cancelEdit() {
       this.editMode = false;
-      this.editTransactionData = {}; // Limpiar los datos de la transacción editada
+      this.editTransactionData = {}; 
     },
     goHome() {
-      this.$router.push('/home'); // Cambia la ruta según tu configuración
+      this.$router.push('/home'); 
     },
     async updateTransactionDetails() {
       try {
@@ -100,7 +96,7 @@
         if (index !== -1) {
           this.transactions[index] = updatedTransaction;
         }
-        this.editMode = false; // Desactivar el modal de edición
+        this.editMode = false; 
       } catch (err) {
         this.error = 'Error actualizando la transacción: ' + err.message;
       }
@@ -162,7 +158,7 @@ h1 {
   color: #7DC4E4;
   font-size: 2rem;
   margin-bottom: 20px;
-  text-align: center; /* Centrar el título */
+  text-align: center; 
 }
 
 table {
@@ -181,18 +177,18 @@ table td {
   text-align: center;
   border: 1px solid #4A4A5D;
   font-size: 14px;
-  color: white; /* Texto blanco en el contenido de la tabla */
+  color: white; 
 }
 
 table th {
-  background-color: #000000; /* Fondo negro para los encabezados */
-  color: #FFFFFF; /* Texto blanco en los encabezados */
+  background-color: #000000; 
+  color: #FFFFFF; 
   font-weight: bold;
   text-transform: uppercase;
 }
 
 table td {
-  background-color: #2B2B3A; /* Fondo oscuro para las celdas */
+  background-color: #2B2B3A; 
 }
 
 table tr:nth-child(even) {
@@ -205,16 +201,16 @@ table tr:hover {
 }
 
 button {
-  background-color: #000000; /* Fondo negro para los botones */
-  color: white; /* Texto blanco en los botones */
+  background-color: #000000; 
+  color: white;
   border: none;
-  padding: 6px 12px; /* Reducir tamaño del botón */
+  padding: 6px 12px; 
   border-radius: 6px;
   cursor: pointer;
-  font-size: 12px; /* Reducir tamaño de texto */
+  font-size: 12px; 
   transition: background-color 0.3s, transform 0.3s;
-  margin-right: 10px; /* Separar los botones */
-  display: inline-block; /* Alinearlos horizontalmente */
+  margin-right: 10px; 
+  display: inline-block; 
 }
 
 button:hover {
@@ -259,69 +255,69 @@ p {
 }
 
 .modal-content form {
-  text-align: center; /* Centrar todo el formulario */
+  text-align: center; 
 }
 
 .modal-content h2 {
   color: #7DC4E4;
   margin-bottom: 20px;
-  text-align: center; /* Centrar el título dentro del modal */
+  text-align: center; 
 }
 
 .modal-content label {
   color: #D9E1E8;
-  font-size: 16px; /* Tamaño de fuente más grande */
+  font-size: 16px; 
   display: block;
   margin-bottom: 8px;
-  text-align: center; /* Alinear el texto de los labels a la izquierda */
+  text-align: center;
 }
 
 .modal-content input {
-  width: 80%; /* Reducir el ancho de los inputs */
-  max-width: 300px; /* Limitar el ancho máximo */
-  padding: 12px 16px; /* Añadir más padding para hacerlo más espacioso */
-  margin: 10px auto; /* Centrar los inputs */
+  width: 80%; 
+  max-width: 300px; 
+  padding: 12px 16px;
+  margin: 10px auto; 
   display: block;
-  background-color: #2B2B3A; /* Fondo oscuro para los inputs */
-  color: #D9E1E8; /* Texto claro */
-  border: 2px solid #4A4A5D; /* Borde sutil */
-  border-radius: 8px; /* Bordes redondeados */
-  font-size: 14px; /* Tamaño de texto moderado */
-  transition: all 0.3s ease-in-out; /* Suavizar la transición de foco */
+  background-color: #2B2B3A; 
+  color: #D9E1E8; 
+  border: 2px solid #4A4A5D; 
+  border-radius: 8px; 
+  font-size: 14px; 
+  transition: all 0.3s ease-in-out; 
 }
 
 .modal-content input:focus {
-  border-color: #7DC4E4; /* Cambiar el color del borde cuando el input está enfocado */
-  outline: none; /* Eliminar el contorno predeterminado */
-  box-shadow: 0 0 8px rgba(125, 196, 228, 0.7); /* Agregar sombra suave */
+  border-color: #7DC4E4; 
+  outline: none; 
+  box-shadow: 0 0 8px rgba(125, 196, 228, 0.7); 
 }
 
 .modal-content button {
-  padding: 8px 14px; /* Botones más pequeños */
-  font-size: 14px; /* Reducir el tamaño de la fuente */
-  background-color: #000000; /* Fondo negro para el botón */
-  color: white; /* Texto blanco */
+  padding: 8px 14px; 
+  font-size: 14px; 
+  background-color: #000000; 
+  color: white; 
   border-radius: 6px;
   cursor: pointer;
-  width: 48%; /* Ajustar el ancho de los botones */
-  margin: 10px 1%; /* Separar un poco los botones */
+  width: 48%; 
+  margin: 10px 1%; 
   box-sizing: border-box;
-  border: none; /* Eliminar el borde */
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Efecto suave en hover */
-  display: inline-block; /* Alinearlos horizontalmente */
+  border: none; 
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block; 
 }
 
 .modal-content button:hover {
-  background-color: #5D9BB5; /* Cambiar a un color más claro al pasar el cursor */
-  transform: translateY(-2px); /* Levantar el botón ligeramente */
+  background-color: #5D9BB5; 
+  transform: translateY(-2px);
 }
 
 .modal-content button:active {
-  transform: translateY(1px); /* Bajar el botón cuando se haga clic */
+  transform: translateY(1px); 
 }
 
 .modal-content button:first-child {
-  margin-right: 10px; /* Separar un poco más el primer botón */
+  margin-right: 10px; 
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -334,28 +330,28 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 .btn-volver {
-  position: fixed; /* Posición fija en relación al navegador */
-  top: 20px; /* Espaciado desde la parte superior */
-  right: 20px; /* Espaciado desde el borde izquierdo */
-  z-index: 1000; /* Asegura que esté encima de otros elementos */
-  background-color: #000000; /* Fondo negro */
-  color: white; /* Texto blanco */
-  padding: 12px 20px; /* Espaciado interno */
-  font-size: 1.2rem; /* Tamaño de fuente */
-  font-family: 'Roboto', sans-serif; /* Fuente */
-  border: none; /* Sin bordes */
-  border-radius: 6px; /* Bordes redondeados */
-  cursor: pointer; /* Cursor interactivo */
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+  position: fixed; 
+  top: 20px; 
+  right: 20px;
+  z-index: 1000; 
+  background-color: #000000; 
+  color: white; 
+  padding: 12px 20px;
+  font-size: 1.2rem; 
+  font-family: 'Roboto', sans-serif; 
+  border: none; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
 .btn-volver:hover {
-  background-color: #5D9BB5; /* Cambio de color al pasar el mouse */
-  transform: translateY(-2px); /* Efecto de elevación */
+  background-color: #5D9BB5; 
+  transform: translateY(-2px);
 }
 
 .btn-volver:active {
-  transform: translateY(1px); /* Suaviza al hacer clic */
+  transform: translateY(1px); 
 }
 
 </style>

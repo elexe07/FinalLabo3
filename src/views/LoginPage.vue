@@ -25,10 +25,9 @@
 export default {
   name: "LoginPage",
   mounted() {
-  // Verificar si el usuario ya está logueado
-  const isLoggedIn = localStorage.getItem("userId"); // Asegúrate de que la clave sea "userId" y no "user_id"
+   const isLoggedIn = localStorage.getItem("userId");
   if (isLoggedIn) {
-    this.$router.push("/home"); // Si ya está logueado, redirigir a la página principal
+    this.$router.push("/home");
   }
 },
   data() {
@@ -43,7 +42,6 @@ export default {
     this.errorMessage = "Por favor, ingresa un ID válido.";
     return;
   }
-  // Guardar el userId en localStorage con la clave "userId"
   localStorage.setItem('userId', this.userId);
   this.$router.push("/home");
 },
@@ -52,7 +50,6 @@ export default {
 </script>
 
 <style scoped>
-/* Estilos generales */
 * {
   margin: 0;
   padding: 0;
@@ -69,7 +66,6 @@ body {
   color: #D9E1E8;
 }
 
-/* Estilos para el contenedor de login */
 .login-container {
   display: flex;
   justify-content: center;
@@ -103,7 +99,6 @@ body {
   flex-direction: column;
 }
 
-/* Estilos para los elementos del formulario */
 .form-group {
   margin-bottom: 20px;
 }
@@ -131,7 +126,6 @@ body {
   box-shadow: 0 0 8px rgba(125, 196, 228, 0.3);
 }
 
-/* Estilos para el mensaje de error */
 .error-message {
   color: #FF4D4D;
   margin-bottom: 20px;
@@ -139,7 +133,6 @@ body {
   font-size: 14px;
 }
 
-/* Estilos para el botón de login */
 .login-btn {
   background-color: #7DC4E4;
   color: #1E1E2E;

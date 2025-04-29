@@ -4,7 +4,6 @@
 
     <h1>Transacciones de Criptomonedas</h1>
 
-    <!-- Formulario de transacciones -->
     <div class="transaction-form">
       <label for="action">Acción:</label>
       <select v-model="action" id="action">
@@ -44,7 +43,6 @@
       </ul>
     </div>
 
-    <!-- Modal de Transacción Exitoso -->
   </div>
     <div v-if="transactionResponse" class="modal-overlay" @click="closeModal">
   <div :class="modalClass()" @click.stop>
@@ -54,7 +52,6 @@
   </div>
 </div>
 
-<!-- Modal de Error -->
 <div v-if="error" class="modal-overlay" @click="closeErrorModal">
   <div :class="modalClass()" @click.stop>
     <h2>Error</h2>
@@ -78,7 +75,7 @@ export default {
       action: 'purchase',
       cryptos: [],
       availableCrypto: 0,
-      allAvailableCryptos: {}, // Disponibilidad total
+      allAvailableCryptos: {}, 
       transactionResponse: null,
       error: null,
     };
@@ -96,7 +93,7 @@ export default {
     },
 
     goHome() {
-      this.$router.push('/home'); // Cambia la ruta según tu configuración
+      this.$router.push('/home'); 
     },
     async fetchAvailableCrypto() {
       try {
@@ -110,7 +107,7 @@ export default {
         });
 
         this.availableCrypto = cryptoAmounts[this.cryptoCode] || 0;
-        return cryptoAmounts; // Para reutilización
+        return cryptoAmounts; 
       } catch (err) {
         this.error = 'Error al obtener criptomonedas disponibles: ' + err.message;
       }
@@ -161,7 +158,6 @@ export default {
         await this.createSale(this.userId, this.cryptoCode, this.cryptoAmount, this.money, new Date());
       }
 
-      // Mostrar mensaje de éxito
       this.transactionResponse = this.action === 'purchase' ? 'Compra completada' : 'Venta completada';
       await this.fetchAllCryptoAvailability();
     } catch (err) {
@@ -171,7 +167,7 @@ export default {
 
   closeModal() {
     this.transactionResponse = null;
-    this.$router.push('/home'); // Redirige al Home
+    this.$router.push('/home'); 
   },
 
   closeErrorModal() {
@@ -179,11 +175,11 @@ export default {
   },
   modalClass() {
   if (this.transactionResponse) {
-    return 'modal-content success'; // Transacción completada (verde)
+    return 'modal-content success'; 
   } else if (this.error) {
-    return 'modal-content error'; // Error (rojo)
+    return 'modal-content error';
   }
-  return 'modal-content'; // Modal por defecto
+  return 'modal-content'; 
 },
     async createPurchase(userId, cryptoCode, cryptoAmount, money, datetime) {
       const data = {
@@ -224,7 +220,6 @@ export default {
 </script>
 
 <style scoped>
-/* Estilo General */
 #app {
   font-family: 'Inter', sans-serif;
   background-color: #1E1E2E;
@@ -236,7 +231,6 @@ export default {
   align-items: center;
 }
 
-/* Títulos */
 h1 {
   font-size: 2.5em;
   margin-bottom: 15px;
@@ -247,33 +241,31 @@ h2 {
   font-size: 1.5em;
   margin: 20px 0;
   color: #A6ADC8;
-  text-align: center; /* Centra el texto horizontalmente */
-  display: inline-block; /* Hace que el h2 sea tratado como un bloque en línea */
-  width: 100%; /* Hace que el h2 ocupe todo el ancho disponible */
-  font-weight: 600; /* Un poco de negrita para mayor presencia */
-  position: relative; /* Necesario para posicionar el subrayado */
-  padding-bottom: 10px; /* Espacio debajo del texto */
+  text-align: center; 
+  display: inline-block; 
+  width: 100%; 
+  font-weight: 600; 
+  position: relative;
+  padding-bottom: 10px; 
 }
 
 h2::after {
-  content: ""; /* No tiene texto, solo es un elemento visual */
+  content: ""; 
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 3px; /* Espesor del subrayado */
-  background: linear-gradient(90deg, #7DC4E4, #A6ADC8, #7DC4E4); /* Gradiente sutil para un borde colorido */
-  border-radius: 3px; /* Bordes redondeados para un subrayado más suave */
-  transform: scaleX(0); /* Inicialmente invisible */
-  transform-origin: center; /* El subrayado se expande desde el centro */
-  transition: transform 0.3s ease-in-out; /* Transición suave y no tan rápida */
+  height: 3px; 
+  background: linear-gradient(90deg, #7DC4E4, #A6ADC8, #7DC4E4); 
+  border-radius: 3px; 
+  transform: scaleX(0); 
+  transform-origin: center; 
+  transition: transform 0.3s ease-in-out; 
 }
 
 h2:hover::after {
-  transform: scaleX(1); /* El subrayado se expande al hacer hover */
+  transform: scaleX(1); 
 }
-
-/* Contenedor de Secciones */
 .transaction-form, .available-crypto, .response, .error {
   background: #2B2B3A;
   border-radius: 12px;
@@ -286,12 +278,11 @@ h2:hover::after {
 }
 
 .transaction-form:hover, .available-crypto:hover {
-  transform: scale(1.05); /* Hace que el formulario se agrande ligeramente */
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4); /* Aumenta la sombra al pasar el mouse */
-  background-color: #3A3A4C; /* Color de fondo más claro para darle más visibilidad */
+  transform: scale(1.05); 
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4); 
+  background-color: #3A3A4C; 
 }
 
-/* Etiquetas y campos */
 .transaction-form label {
   font-weight: 600;
   margin-bottom: 8px;
@@ -311,21 +302,19 @@ h2:hover::after {
   border-radius: 8px;
   font-size: 1em;
   outline: none;
-  box-sizing: border-box; /* Asegura que el padding no cambie el tamaño del campo */
+  box-sizing: border-box; 
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Eliminar los controles de número y uniformizar los campos */
 .transaction-form input[type="number"],
 .transaction-form input[type="text"],
 .transaction-form select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 100%; /* Asegura que todos los campos sean del mismo tamaño */
+  width: 100%; 
 }
 
-/* Eliminar controles de número de los inputs tipo "number" */
 .transaction-form input[type="number"]::-webkit-outer-spin-button,
 .transaction-form input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -333,7 +322,7 @@ h2:hover::after {
 }
 
 .transaction-form input[type="number"] {
-  -moz-appearance: textfield; /* Para Firefox */
+  -moz-appearance: textfield; 
 }
 
 .transaction-form input:focus,
@@ -342,7 +331,6 @@ h2:hover::after {
   box-shadow: 0 0 5px rgba(125, 196, 228, 0.5);
 }
 
-/* Botón */
 button {
   width: 100%;
   padding: 12px;
@@ -365,7 +353,6 @@ button:active {
   transform: translateY(0);
 }
 
-/* Balance de Criptomonedas */
 .available-crypto ul {
   list-style: none;
   padding: 0;
@@ -378,12 +365,11 @@ button:active {
   margin-bottom: 8px;
   border-radius: 8px;
   display: flex;
-  justify-content: center; /* Centers content horizontally */
-  align-items: center; /* Centers content vertically */
+  justify-content: center; 
+  align-items: center; 
   font-weight: 500;
-  text-align: center; /* Ensures the text is centered inside the item */
+  text-align: center; 
 }
-/* Respuestas y Errores */
 .response, .error {
   text-align: left;
   border-left: 5px solid;
@@ -392,18 +378,17 @@ button:active {
 }
 
 .response {
-  border-color: #66CDAA; /* Color de borde verde */
-  background: #2A3C36; /* Fondo verde oscuro */
-  color: #D1F7D8; /* Texto verde claro */
+  border-color: #66CDAA; 
+  background: #2A3C36; 
+  color: #D1F7D8; 
 }
 
 .error {
-  border-color: #FF6B6B; /* Color de borde rojo */
-  background: #3C2B2B; /* Fondo rojo oscuro */
-  color: #FFBABA; /* Texto rojo claro */
+  border-color: #FF6B6B; 
+  background: #3C2B2B; 
+  color: #FFBABA; 
 }
 
-/* Estilos del Modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -418,8 +403,8 @@ button:active {
 }
 
 .modal-content {
-  background: #2A3C36; /* Fondo verde por defecto */
-  color: #D1F7D8; /* Texto claro */
+  background: #2A3C36; 
+  color: #D1F7D8; 
   padding: 20px;
   border-radius: 8px;
   text-align: center;
@@ -429,7 +414,7 @@ button:active {
 
 .modal-content button {
   padding: 10px;
-  background: #a8a8a8; /* Botón verde */
+  background: #a8a8a8; 
   color: #1E1E2E;
   border: none;
   border-radius: 8px;
@@ -441,42 +426,41 @@ button:active {
   background: #55B89A;
 }
 
-/* Modificar el estilo del modal según la transacción */
 .modal-content.success {
-  background: #66CDAA; /* Fondo verde */
-  color: #1E1E2E; /* Texto oscuro */
+  background: #66CDAA;
+  color: #1E1E2E; 
 }
 
 .modal-content.error {
-  background: #FF6B6B; /* Fondo rojo */
-  color: #1E1E2E; /* Texto oscuro */
+  background: #FF6B6B;
+  color: #1E1E2E;
 }
 
 .btn-volver {
-  position: fixed; /* Posición fija en relación al navegador */
-  top: 20px; /* Espaciado desde la parte superior */
-  right: 20px; /* Espaciado desde el borde izquierdo */
-  z-index: 1000; /* Asegura que esté encima de otros elementos */
-  background-color: #000000; /* Fondo negro */
-  color: white; /* Texto blanco */
-  padding: 12px 20px; /* Espaciado interno */
-  font-size: 1.2rem; /* Tamaño de fuente */
-  font-family: 'Roboto', sans-serif; /* Fuente */
-  border: none; /* Sin bordes */
-  border-radius: 6px; /* Bordes redondeados */
-  cursor: pointer; /* Cursor interactivo */
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
-  width: auto; /* Asegura que el ancho del botón no se estire */
-  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  position: fixed; 
+  top: 20px; 
+  right: 20px; 
+  z-index: 1000; 
+  background-color: #000000; 
+  color: white;
+  padding: 12px 20px; 
+  font-size: 1.2rem; 
+  font-family: 'Roboto', sans-serif; 
+  border: none; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+  width: auto; 
+  white-space: nowrap; 
 }
 
 .btn-volver:hover {
-  background-color: #5D9BB5; /* Cambio de color al pasar el mouse */
-  transform: translateY(-2px); /* Efecto de elevación */
+  background-color: #5D9BB5; 
+  transform: translateY(-2px); 
 }
 
 .btn-volver:active {
-  transform: translateY(1px); /* Suaviza al hacer clic */
+  transform: translateY(1px); 
 }
 
 </style>

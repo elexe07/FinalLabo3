@@ -79,7 +79,6 @@ export default {
       this.totalCurrentValue = 0;
       this.netProfitLoss = 0;
 
-      // Consolidar cantidades y valores invertidos
       transactions.forEach(({ crypto_code, crypto_amount, money, action }) => {
         const amount = parseFloat(crypto_amount);
         const invested = parseFloat(money);
@@ -99,7 +98,6 @@ export default {
         }
       });
 
-      // Obtener precios actuales
       const cryptoCodes = Object.keys(cryptoAmounts);
       try {
         const pricePromises = cryptoCodes.map((code) => getCryptoPrice(code, 'ARS', 1));
@@ -115,7 +113,6 @@ export default {
         return;
       }
 
-      // Calcular valores actuales y ganancias/pérdidas
       this.cryptoList = cryptoCodes.map((code) => {
         const amount = cryptoAmounts[code].amount;
         const invested = cryptoAmounts[code].invested;
